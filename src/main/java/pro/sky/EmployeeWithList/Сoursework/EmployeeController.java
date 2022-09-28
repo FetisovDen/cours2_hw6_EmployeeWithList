@@ -15,16 +15,16 @@ public class EmployeeController {
 
 
     @GetMapping("/add")
-    public String add(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName ) {
-        return employeeService.addEmployee(firstName,lastName);
+    public String add(@RequestParam("id") Integer id, @RequestParam("fullName") String fullName ) {
+        return employeeService.addEmployee(id,fullName);
     }
     @GetMapping("/remove")
-    public String remove(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName ) {
-        return employeeService.removeEmployee(firstName,lastName);
+    public String remove(@RequestParam("id") Integer id) {
+        return employeeService.removeEmployee(id);
     }
     @GetMapping("/find")
-    public String find(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName ) {
-        return employeeService.containsEmployee(firstName,lastName);
+    public String find(@RequestParam("id") Integer id) {
+        return employeeService.containsEmployee(id);
     }
     @GetMapping("/findAll")
     public String find() {
