@@ -1,33 +1,51 @@
 package pro.sky.EmployeeWithList.Сoursework;
 
-import java.util.Collections;
 import java.util.Objects;
-import java.util.Set;
+
 
 public class Employee {
-    private final Set<String> fullName;
+    private final String fullName;
+    private  double salary;
+    private  int department;
 
-    public Employee(String fullName) {
-        this.fullName = Collections.singleton(fullName);
-
+    public Employee(String fullName, double salary, int department) {
+        this.fullName = fullName;
+        this.salary = salary;
+        this.department = department;
     }
+
     public String getFullName() {
-        return fullName.toString();
+
+        return fullName;
     }
+
+    public  double getSalary() {
+
+        return salary;
+    }
+
+    public  int getDepartment() {
+
+        return department;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return getFullName().equals(employee.getFullName());
+        return Double.compare(employee.getSalary(), getSalary()) == 0 && getDepartment() == employee.getDepartment() && getFullName().equals(employee.getFullName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFullName());
+        return Objects.hash(getFullName(), getSalary(), getDepartment());
     }
+
     @Override
     public String toString() {
-        return fullName.toString();
+        return " " + fullName +
+                ", salary=" + salary +
+                ", department=" + department;
     }
 }

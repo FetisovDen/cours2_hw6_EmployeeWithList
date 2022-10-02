@@ -4,22 +4,28 @@ import org.springframework.stereotype.Service;
 import pro.sky.EmployeeWithList.exception.EmployeeAlreadyAddedException;
 import pro.sky.EmployeeWithList.exception.EmployeeNotFoundException;
 
+
 import java.util.HashMap;
-import java.util.Map;;
+import java.util.Map;
 
 @Service
 public class EmployeeService {
-    static Map<Integer,Employee> employeesBook = new HashMap<>();
+    public static Map<String, Employee> employeesBook = new HashMap<>();
 
-    public static String addEmployee(Integer id, String fullName) {
-        if (!employeesBook.containsKey(id) && !employeesBook.containsValue(new Employee(fullName))) {
-            employeesBook.put(id, new Employee(fullName));
+    private String id(Employee employee) {
+        return employee.getFullName();
+    }
+
+    public static String addEmployee(String id, String fullName, double salary, int department) {
+        if (!employeesBook.containsKey(id)) {
+            employeesBook.put(id, new Employee(fullName, salary, department));
             return employeesBook.toString();
         } else {
             throw new EmployeeAlreadyAddedException();
         }
     }
-    public static String removeEmployee(Integer id) {
+
+    public static String removeEmployee(String id) {
         if (employeesBook.containsKey(id)) {
             employeesBook.remove(id);
             return employeesBook.toString();
@@ -27,16 +33,20 @@ public class EmployeeService {
             throw new EmployeeNotFoundException();
         }
     }
-    public static String containsEmployee(Integer id) {
+
+    public static String containsEmployee(String id) {
         if (employeesBook.containsKey(id)) {
             return String.valueOf(employeesBook.get(id));
         } else {
             throw new EmployeeNotFoundException();
         }
     }
-    public String findAll() {
+
+    public static String findAll() {
+
         return employeesBook.toString();
     }
+
 
 }
 

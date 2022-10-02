@@ -11,21 +11,28 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;}
+        this.employeeService = employeeService;
+    }
 
 
     @GetMapping("/add")
-    public String add(@RequestParam("id") Integer id, @RequestParam("fullName") String fullName ) {
-        return employeeService.addEmployee(id,fullName);
+    public String add(@RequestParam("id") String id,
+                      @RequestParam("fullName") String fullName,
+                      @RequestParam("salary") double salary,
+                      @RequestParam("department") int department) {
+        return employeeService.addEmployee(id, fullName, salary, department);
     }
+
     @GetMapping("/remove")
-    public String remove(@RequestParam("id") Integer id) {
+    public String remove(@RequestParam("id") String id) {
         return employeeService.removeEmployee(id);
     }
+
     @GetMapping("/find")
-    public String find(@RequestParam("id") Integer id) {
+    public String find(@RequestParam("id") String id) {
         return employeeService.containsEmployee(id);
     }
+
     @GetMapping("/findAll")
     public String find() {
         return employeeService.findAll();
