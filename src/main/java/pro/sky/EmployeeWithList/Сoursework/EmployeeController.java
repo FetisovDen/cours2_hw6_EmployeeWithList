@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -16,21 +18,20 @@ public class EmployeeController {
 
 
     @GetMapping("/add")
-    public String add(@RequestParam("id") String id,
-                      @RequestParam("fullName") String fullName,
-                      @RequestParam("salary") double salary,
-                      @RequestParam("department") int department) {
-        return employeeService.addEmployee(id, fullName, salary, department);
+    public Map<String, Employee> add(@RequestParam("fullName") String fullName,
+                                     @RequestParam("salary") double salary,
+                                     @RequestParam("department") int department) {
+        return employeeService.addEmployee(fullName, salary, department);
     }
 
     @GetMapping("/remove")
-    public String remove(@RequestParam("id") String id) {
-        return employeeService.removeEmployee(id);
+    public String remove(@RequestParam("fullname") String fullname) {
+        return employeeService.removeEmployee(fullname);
     }
 
     @GetMapping("/find")
-    public String find(@RequestParam("id") String id) {
-        return employeeService.containsEmployee(id);
+    public String find(@RequestParam("fullname") String fullname) {
+        return employeeService.containsEmployee(fullname);
     }
 
     @GetMapping("/findAll")

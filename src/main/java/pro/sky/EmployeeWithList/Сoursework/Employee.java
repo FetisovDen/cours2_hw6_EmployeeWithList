@@ -1,10 +1,11 @@
 package pro.sky.EmployeeWithList.Сoursework;
 
+import java.util.List;
 import java.util.Objects;
 
 
 public class Employee {
-    private final String fullName;
+    private String fullName;
     private  double salary;
     private  int department;
 
@@ -14,10 +15,14 @@ public class Employee {
         this.department = department;
     }
 
-    public String getFullName() {
+    public  void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
+    public  String getFullName() {
         return fullName;
     }
+
 
     public  double getSalary() {
 
@@ -28,6 +33,8 @@ public class Employee {
 
         return department;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
